@@ -1,0 +1,781 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Gini × VaiGustando — Shop online</title>
+<meta name="description" content="Guida all'integrazione dello shop online VaiGustando nel sito ginivini.com, per il team creativo e di sviluppo.">
+<style>
+@font-face{font-family:'Trirong';font-style:normal;font-weight:300;font-display:swap;src:url(fonts/Trirong-normal-300.woff2) format('woff2')}
+@font-face{font-family:'Trirong';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/Trirong-normal-400.woff2) format('woff2')}
+@font-face{font-family:'Trirong';font-style:italic;font-weight:400;font-display:swap;src:url(fonts/Trirong-italic-400.woff2) format('woff2')}
+@font-face{font-family:'Instrument Sans';font-style:normal;font-weight:400 700;font-display:swap;src:url(fonts/InstrumentSans.woff2) format('woff2')}
+
+:root{
+  --bg:#ffffff;
+  --paper:#f8f6ef;          /* il crema di ginivini.com */
+  --ink:#1f1f1f;
+  --ink-soft:#5f5a55;
+  --brown:#5c4f45;          /* primario VaiGustando */
+  --brown-2:#6b5c50;
+  --line:#e4dfd6;
+  --line-strong:#1f1f1f;
+  --note:#f3efe6;
+  --ok:#3f7d4e;
+  --serif:'Trirong',Georgia,serif;
+  --sans:'Instrument Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --wrap:1180px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.6 var(--sans)}
+img{max-width:100%;display:block}
+a{color:var(--brown)}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 32px}
+@media (max-width:640px){.wrap{padding:0 16px}}
+
+/* ---------- top bar ---------- */
+.annbar{background:var(--brown);color:#fff;text-align:center;font:500 12.5px/1 var(--sans);letter-spacing:.04em;padding:11px 16px}
+.top{border-bottom:1px solid var(--line);background:#fff;position:sticky;top:0;z-index:20}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;height:72px;gap:24px}
+.top img{height:42px;width:auto}
+.top nav{display:flex;gap:26px;font:400 15px/1 var(--serif);text-transform:uppercase;letter-spacing:.02em}
+.top nav a{color:var(--ink);text-decoration:none;white-space:nowrap}
+.top nav a:hover{color:var(--brown)}
+@media (max-width:1060px){.top nav{display:none}}
+.top .badge{font:500 12px/1 var(--sans);color:var(--ink-soft);letter-spacing:.06em;text-transform:uppercase;white-space:nowrap}
+
+/* ---------- hero ---------- */
+.hero{padding:88px 0 64px;border-bottom:1px solid var(--line)}
+.kicker{font:600 12px/1.2 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--brown);margin:0 0 22px}
+h1{font:300 clamp(40px,6.4vw,78px)/1.04 var(--serif);margin:0;letter-spacing:-.01em;max-width:15ch}
+h1 em{font-style:italic;font-weight:400}
+.lede{font:400 clamp(18px,2vw,22px)/1.5 var(--serif);color:var(--ink-soft);max-width:44ch;margin:28px 0 0}
+.meta{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;margin-top:56px;border-top:1px solid var(--line-strong)}
+.meta div{padding:16px 20px 0 0}
+.meta dt{font:600 11px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:8px}
+.meta dd{margin:0;font:400 16px/1.4 var(--serif)}
+@media (max-width:640px){.meta{grid-template-columns:1fr}.meta div{padding:14px 0 0}}
+
+/* ---------- sections ---------- */
+section.block{padding:88px 0;border-bottom:1px solid var(--line)}
+section.block.paper{background:var(--paper)}
+.sec-head{display:grid;grid-template-columns:120px minmax(0,1fr);gap:24px;margin-bottom:44px}
+.num{font:300 64px/0.9 var(--serif);color:var(--brown)}
+h2{font:400 clamp(30px,3.6vw,44px)/1.12 var(--serif);margin:0 0 14px}
+.sec-head p{margin:0;max-width:62ch;color:var(--ink-soft);font-size:17px}
+@media (max-width:760px){.sec-head{grid-template-columns:1fr;gap:6px}.num{font-size:44px}}
+h3{font:400 24px/1.25 var(--serif);margin:0 0 12px}
+h4{font:600 12px/1.2 var(--sans);letter-spacing:.14em;text-transform:uppercase;margin:0 0 12px;color:var(--brown)}
+p{margin:0 0 14px}
+
+/* principle */
+.principle{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border:1px solid var(--line-strong)}
+.principle div{padding:28px 26px;position:relative}
+.principle div+div{border-left:1px solid var(--line-strong)}
+.principle b{display:block;font:600 11px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--brown);margin-bottom:12px}
+.principle span{font:400 21px/1.35 var(--serif)}
+@media (max-width:760px){.principle{grid-template-columns:1fr}.principle div+div{border-left:0;border-top:1px solid var(--line-strong)}}
+
+/* interventions overview */
+.overview{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px;margin-top:48px}
+.overview a{display:block;text-decoration:none;color:var(--ink);border-top:1px solid var(--line-strong);padding-top:16px}
+.overview a:hover h3{color:var(--brown)}
+.overview .n{font:300 34px/1 var(--serif);color:var(--brown);display:block;margin-bottom:12px}
+.overview h3{font-size:20px;margin-bottom:6px;transition:color .15s}
+.overview p{font-size:14.5px;color:var(--ink-soft);margin:0}
+@media (max-width:900px){.overview{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:520px){.overview{grid-template-columns:1fr}}
+
+/* journeys */
+.journeys{display:grid;gap:18px;margin-top:56px}
+.journey{border:1px solid var(--line);background:#fff;padding:22px 24px}
+.journey h4{margin-bottom:16px}
+.steps{display:flex;flex-wrap:wrap;align-items:center;gap:10px}
+.step{font:400 16px/1.3 var(--serif);padding:10px 14px;border:1px solid var(--line-strong);background:#fff}
+.step small{display:block;font:500 10.5px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:5px}
+.step.vg{background:var(--brown);color:#fff;border-color:var(--brown)}
+.step.vg small{color:#e8dfd7}
+.arrow{color:var(--brown);font-size:18px}
+
+/* before / after */
+.ba{margin:0}
+.ba-tabs{display:inline-flex;border:1px solid var(--line-strong);margin-bottom:14px}
+.ba-tabs button{appearance:none;border:0;background:#fff;color:var(--ink);font:600 12px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;padding:12px 18px;cursor:pointer;min-height:44px}
+.ba-tabs button+button{border-left:1px solid var(--line-strong)}
+.ba-tabs button[aria-pressed=true]{background:var(--ink);color:#fff}
+.frame{position:relative;border:1px solid var(--line);background:#111;overflow:hidden;cursor:zoom-in}
+.frame img{width:100%;height:auto}
+.frame .after,.frame .hot{display:none}
+.ba.show-after .frame .before{display:none}
+.ba.show-after .frame .after{display:block}
+.ba.show-after .frame .hot{display:block}
+.ba.only-after .frame .after, .ba.only-after .frame .hot{display:block}
+.hot{position:absolute;border:2px solid #e2b04a;box-shadow:0 0 0 9999px rgba(0,0,0,.0),0 0 0 4px rgba(226,176,74,.25);border-radius:3px;pointer-events:none;animation:pulse 2.4s ease-in-out infinite}
+.hot i{position:absolute;top:-13px;right:-13px;width:26px;height:26px;border-radius:50%;background:#e2b04a;color:#1f1f1f;font:700 13px/26px var(--sans);text-align:center;font-style:normal}
+@keyframes pulse{50%{box-shadow:0 0 0 9999px rgba(0,0,0,0),0 0 0 9px rgba(226,176,74,.12)}}
+@media (prefers-reduced-motion:reduce){.hot{animation:none}}
+figcaption{font-size:14px;color:var(--ink-soft);margin-top:12px;line-height:1.5}
+figcaption b{color:var(--ink);font-weight:600}
+
+.grid-2{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(0,1fr);gap:40px;align-items:start}
+.grid-2.even{grid-template-columns:repeat(2,minmax(0,1fr))}
+.grid-3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+@media (max-width:900px){.grid-2,.grid-2.even,.grid-3{grid-template-columns:1fr}}
+.mt{margin-top:56px}
+
+/* spec card */
+.spec{border-top:1px solid var(--line-strong);padding-top:18px}
+.spec dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:10px 18px;font-size:15px}
+.spec dt{font:600 11px/1.9 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);white-space:nowrap}
+.spec dd{margin:0}
+code,.mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13px;background:var(--note);padding:2px 6px;border-radius:2px;word-break:break-all}
+ul.clean{margin:0;padding:0;list-style:none}
+ul.clean li{padding:10px 0;border-bottom:1px solid var(--line);font-size:15px}
+ul.clean li:last-child{border-bottom:0}
+
+.note{background:var(--note);border-left:3px solid var(--brown);padding:18px 22px;font-size:15px;margin-top:24px}
+.note b{font-weight:600}
+
+/* copy block (testo /shop) */
+.copy{background:var(--paper);border:1px solid var(--line);padding:36px 40px;font:400 17px/1.65 var(--serif)}
+.copy .eyebrow{font:600 11px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:10px}
+.copy h3{font-size:32px;font-weight:300;text-transform:uppercase;letter-spacing:.02em;margin-bottom:4px}
+.copy .sub{font:italic 400 18px/1.4 var(--serif);color:var(--brown);margin-bottom:22px}
+.copy .cta{display:inline-block;margin-top:10px;border:1px solid var(--ink);padding:12px 22px;font:600 12px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--ink);text-decoration:none}
+.copy-actions{display:flex;justify-content:flex-end;margin-bottom:10px}
+@media (max-width:640px){.copy{padding:24px 20px}}
+
+.btn{appearance:none;border:1px solid var(--brown);background:#fff;color:var(--brown);font:600 11.5px/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;padding:10px 14px;cursor:pointer;border-radius:999px;min-height:36px;white-space:nowrap}
+.btn:hover{background:var(--brown);color:#fff}
+.btn.done{background:var(--ok);border-color:var(--ok);color:#fff}
+
+/* table */
+.table-wrap{overflow-x:auto;border:1px solid var(--line);-webkit-overflow-scrolling:touch}
+table{width:100%;border-collapse:collapse;font-size:14.5px;min-width:760px}
+th{font:600 11px/1.2 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);text-align:left;padding:14px 16px;background:var(--paper);border-bottom:1px solid var(--line)}
+td{padding:13px 16px;border-bottom:1px solid var(--line);vertical-align:top}
+tr:last-child td{border-bottom:0}
+td .wine{font:400 17px/1.3 var(--serif)}
+td .path{display:block;font-size:12.5px;color:var(--ink-soft);margin-top:3px}
+td a{word-break:break-all}
+.tag{display:inline-block;white-space:nowrap;font:600 10.5px/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;padding:6px 9px;border-radius:999px}
+.tag.yes{background:#e6f0e8;color:var(--ok)}
+.tag.no{background:#efe9e2;color:var(--ink-soft)}
+tr.off td{color:var(--ink-soft)}
+.lang-switch{display:inline-flex;border:1px solid var(--line-strong);margin-bottom:14px}
+.lang-switch button{appearance:none;border:0;background:#fff;font:600 12px/1 var(--sans);letter-spacing:.12em;padding:11px 16px;cursor:pointer;min-height:40px}
+.lang-switch button+button{border-left:1px solid var(--line-strong)}
+.lang-switch button[aria-pressed=true]{background:var(--ink);color:#fff}
+
+/* roles */
+.roles td:first-child{font:400 17px/1.3 var(--serif);white-space:nowrap}
+
+/* checklist */
+.check{list-style:none;padding:0;margin:0;border-top:1px solid var(--line-strong)}
+.check li{border-bottom:1px solid var(--line)}
+.check label{display:flex;gap:14px;align-items:flex-start;padding:14px 0;cursor:pointer;font-size:15.5px}
+.check input{width:20px;height:20px;margin:2px 0 0;accent-color:var(--brown);flex:none}
+.check input:checked+span{color:var(--ink-soft);text-decoration:line-through}
+
+/* outcome */
+.outcome{display:flex;flex-wrap:wrap;gap:0;justify-content:center;font:300 clamp(18px,2.6vw,32px)/1.3 var(--serif);text-transform:uppercase;letter-spacing:.04em;margin:28px 0 0}
+.outcome span{padding:0 18px}
+.outcome span+span:before{content:"→";color:var(--brown);margin-right:36px;font-size:.8em}
+
+footer.foot{background:var(--brown);color:#efe8e1;padding:56px 0 64px;font-size:14.5px}
+footer.foot .wrap{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:32px}
+footer.foot h4{color:#fff}
+footer.foot a{color:#fff}
+footer.foot img{height:46px;width:auto;filter:brightness(0) invert(1);opacity:.95;margin-bottom:16px}
+@media (max-width:760px){footer.foot .wrap{grid-template-columns:1fr}}
+
+/* lightbox */
+.lb{position:fixed;inset:0;background:rgba(20,18,16,.92);display:none;align-items:center;justify-content:center;z-index:100;padding:24px;cursor:zoom-out}
+.lb.open{display:flex}
+.lb img{max-width:100%;max-height:100%;box-shadow:0 20px 60px rgba(0,0,0,.5)}
+.lb button{position:absolute;top:16px;right:16px;width:44px;height:44px;border-radius:50%;border:1px solid #fff;background:transparent;color:#fff;font-size:20px;cursor:pointer}
+
+.phone{max-width:300px;margin:0 auto;border-radius:28px;overflow:hidden;border:8px solid #1f1f1f;background:#1f1f1f}
+.phone .frame{border:0}
+.small-cap{font:600 11px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);margin:0 0 10px}
+
+@media print{
+  .top{position:static}
+  .ba .frame .after,.ba .frame .hot{display:block!important}
+  .ba-tabs,.btn,.lang-switch{display:none}
+  section.block{break-inside:avoid-page}
+}
+</style>
+</head>
+<body>
+
+<div class="annbar">Proposta di integrazione digitale · Gini × VaiGustando</div>
+<header class="top">
+  <div class="wrap">
+    <img src="img/logo-vaigustando.png" alt="VaiGustando" width="99" height="42">
+    <nav aria-label="Sezioni">
+      <a href="#percorso">Percorso</a>
+      <a href="#navigazione">Navigazione</a>
+      <a href="#shop">Pagina /shop</a>
+      <a href="#creazioni">Creazioni</a>
+      <a href="#contatti">Contatti</a>
+      <a href="#linee-guida">Linee guida</a>
+    </nav>
+    <span class="badge">Per il team ginivini.com</span>
+  </div>
+</header>
+
+<main>
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap">
+    <p class="kicker">Gini — Viticoltori dal 1570 &nbsp;×&nbsp; VaiGustando</p>
+    <h1>Lo shop online, <em>dentro</em> il racconto Gini</h1>
+    <p class="lede">Dal racconto del vino all’acquisto, senza interrompere l’esperienza Gini. Quattro interventi sul sito, mostrati qui sulle pagine reali di ginivini.com.</p>
+    <dl class="meta">
+      <div><dt>Destinatari</dt><dd>Team creativo e sviluppo di ginivini.com</dd></div>
+      <div><dt>A cura di</dt><dd>VaiGustando</dd></div>
+      <div><dt>Versione</dt><dd>Ottobre 2026</dd></div>
+    </dl>
+  </div>
+</section>
+
+<!-- 0. OBIETTIVO -->
+<section class="block" id="percorso">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="num">00</div>
+      <div>
+        <h2>Obiettivo e principio guida</h2>
+        <p>Rendere acquistabili online i vini Gini lasciando intatti stile, identità e tono editoriale di ginivini.com. Il sito non diventa un e-commerce: si collega in modo naturale all’ambiente d’acquisto gestito da VaiGustando.</p>
+      </div>
+    </div>
+
+    <div class="principle">
+      <div><b>Gini</b><span>racconta e presenta il vino</span></div>
+      <div><b>Gini</b><span>indica VaiGustando come partner</span></div>
+      <div><b>VaiGustando</b><span>abilita e gestisce l’acquisto online</span></div>
+    </div>
+
+    <div class="overview">
+      <a href="#navigazione"><span class="n">01</span><h3>SHOP ONLINE in navigazione</h3><p>Voce stabile nell’header, nella barra di navigazione e nel menu.</p></a>
+      <a href="#shop"><span class="n">02</span><h3>Pagina ginivini.com/shop</h3><p>Presenta la partnership e porta alla collezione Gini su VaiGustando.</p></a>
+      <a href="#creazioni"><span class="n">03</span><h3>ACQUISTA ONLINE nelle Creazioni</h3><p>Nel blocco ASSAPORALO, deep link alla scheda del singolo vino.</p></a>
+      <a href="#contatti"><span class="n">04</span><h3>Riferimento nei Contatti</h3><p>A chi rivolgersi per ordini, spedizioni e assistenza sugli acquisti.</p></a>
+    </div>
+
+    <div class="journeys">
+      <div class="journey">
+        <h4>Percorso generale</h4>
+        <div class="steps">
+          <div class="step"><small>ginivini.com</small>Qualsiasi pagina</div><span class="arrow">→</span>
+          <div class="step"><small>Navigazione</small>SHOP ONLINE</div><span class="arrow">→</span>
+          <div class="step"><small>ginivini.com</small>/shop</div><span class="arrow">→</span>
+          <div class="step vg"><small>vaigustando.it</small>Collezione Gini</div>
+        </div>
+      </div>
+      <div class="journey">
+        <h4>Percorso prodotto</h4>
+        <div class="steps">
+          <div class="step"><small>Creazioni</small>Soave Classico</div><span class="arrow">→</span>
+          <div class="step"><small>Blocco finale</small>ASSAPORALO</div><span class="arrow">→</span>
+          <div class="step"><small>CTA</small>ACQUISTA ONLINE</div><span class="arrow">→</span>
+          <div class="step vg"><small>vaigustando.it</small>Scheda prodotto</div>
+        </div>
+      </div>
+      <div class="journey">
+        <h4>Percorso assistenza</h4>
+        <div class="steps">
+          <div class="step"><small>ginivini.com</small>Contatti</div><span class="arrow">→</span>
+          <div class="step"><small>Nuovo blocco</small>Acquisti online</div><span class="arrow">→</span>
+          <div class="step vg"><small>VaiGustando</small>Email · WhatsApp · Shop</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 1. NAVIGAZIONE -->
+<section class="block paper" id="navigazione">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="num">01</div>
+      <div>
+        <h2>SHOP ONLINE nella navigazione</h2>
+        <p>Una voce in più, con lo stesso componente e lo stesso stile di CONTATTI. È visibile su tutte le pagine, non solo in home, e porta alla pagina interna <code>/shop</code>, non direttamente fuori dal sito.</p>
+      </div>
+    </div>
+
+    <figure class="ba" data-ba>
+      <div class="ba-tabs" role="group" aria-label="Confronto">
+        <button type="button" aria-pressed="false" data-v="before">Oggi</button>
+        <button type="button" aria-pressed="true" data-v="after">Proposta</button>
+      </div>
+      <div class="frame">
+        <img class="before" src="img/gini-home-before.jpg" alt="Home di ginivini.com oggi">
+        <img class="after" src="img/gini-home-after.jpg" alt="Home di ginivini.com con la voce SHOP ONLINE">
+        <div class="hot" style="left:82%;top:2.4%;width:7.4%;height:5.8%"><i>1</i></div>
+        <div class="hot" style="left:72.4%;top:93%;width:8.6%;height:6.4%"><i>2</i></div>
+      </div>
+      <figcaption><b>1 · Header:</b> SHOP ONLINE accanto a CONTATTI, in alto a destra. <b>2 · Barra di navigazione</b> (la stessa del menu): SHOP ONLINE prima di CONTATTI. Mockup ottenuto inserendo le voci nella pagina reale, con i componenti del sito.</figcaption>
+    </figure>
+
+    <div class="grid-2 mt">
+      <figure class="ba only-after" style="margin:0">
+        <p class="small-cap">Menu aperto · proposta</p>
+        <div class="frame">
+          <img class="after" src="img/gini-menu-after.jpg" alt="Menu di ginivini.com con la card 007 Shop online">
+          <div class="hot" style="left:87.4%;top:34%;width:12.6%;height:47%"><i>3</i></div>
+        </div>
+        <figcaption><b>3 · Menu:</b> una card <b>007 · SHOP ONLINE</b> dopo 006 · Contatti, con una foto di prodotto o di degustazione dall’archivio Gini. Nel mockup abbiamo usato l’immagine del calice di Soave Classico già presente sul sito.</figcaption>
+      </figure>
+      <div>
+        <figure class="ba" data-ba style="margin:0">
+          <div class="ba-tabs" role="group" aria-label="Confronto mobile">
+            <button type="button" aria-pressed="false" data-v="before">Oggi</button>
+            <button type="button" aria-pressed="true" data-v="after">Proposta</button>
+          </div>
+          <div class="phone">
+            <div class="frame">
+              <img class="before" src="img/gini-mobile-before.jpg" alt="Home mobile oggi">
+              <img class="after" src="img/gini-mobile-after.jpg" alt="Home mobile con SHOP ONLINE nella barra">
+              <div class="hot" style="left:24%;top:91.4%;width:32%;height:5.6%"><i>4</i></div>
+            </div>
+          </div>
+          <figcaption><b>4 · Mobile:</b> nell’header non c’è spazio accanto al logo. SHOP ONLINE va nella barra di navigazione inferiore, subito dopo HOME, perché sia visibile al primo scroll senza aprire il menu.</figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <div class="grid-2 even mt">
+      <div class="spec">
+        <h4>Specifiche</h4>
+        <dl>
+          <dt>Etichetta IT</dt><dd>SHOP ONLINE</dd>
+          <dt>Etichetta EN</dt><dd>ONLINE SHOP</dd>
+          <dt>Link IT</dt><dd><code>/shop</code></dd>
+          <dt>Link EN</dt><dd><code>/en/shop</code></dd>
+          <dt>Componente</dt><dd>Lo stesso di CONTATTI (<code>a.nav__item</code> nell’header, <code>a.menu__nav__item</code> nella barra)</dd>
+          <dt>Apertura</dt><dd>Stessa scheda, perché è una pagina interna</dd>
+        </dl>
+      </div>
+      <div class="spec">
+        <h4>Dove compare</h4>
+        <ul class="clean">
+          <li>Header desktop, su tutte le pagine: a destra, prima di CONTATTI.</li>
+          <li>Barra di navigazione: prima di CONTATTI su desktop, dopo HOME su mobile.</li>
+          <li>Menu a tutto schermo: card 007.</li>
+          <li>Footer, colonna destra, come link testuale (facoltativo ma consigliato).</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 2. /SHOP -->
+<section class="block" id="shop">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="num">02</div>
+      <div>
+        <h2>La pagina ginivini.com/shop</h2>
+        <p>È una pagina Gini a tutti gli effetti, con lo stesso look &amp; feel del sito. Presenta il servizio, rassicura l’utente e mette in chiaro la partnership prima del passaggio all’e-commerce. Ha una sola CTA principale. Così il cambio di dominio non arriva a sorpresa: è la cantina stessa a indicare VaiGustando come partner.</p>
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <figure class="ba only-after" style="margin:0">
+        <div class="frame">
+          <img class="after" src="img/gini-shop-mock.jpg" alt="Mockup della pagina /shop nello stile di ginivini.com">
+          <div class="hot" style="left:42.2%;top:68.8%;width:15.6%;height:6%"><i>→</i></div>
+        </div>
+        <figcaption><b>Mockup</b> costruito sull’impaginato della pagina Contatti: titolo nel lettering del sito, testo di partnership, CTA unica verso la collezione. Il testo completo è qui accanto, la foto e l’impaginazione definitive le sceglie il team creativo.</figcaption>
+      </figure>
+
+      <div>
+        <div class="copy-actions"><button class="btn" type="button" data-copy="#shop-copy">Copia il testo</button></div>
+        <div class="copy" id="shop-copy">
+          <div class="eyebrow">Testo della pagina · IT</div>
+          <h3>Shop online</h3>
+          <div class="sub">In partnership con VaiGustando</div>
+          <p>Vi informiamo che la vendita online dei nostri vini è gestita in partnership con VaiGustando, e-commerce specializzato nella selezione e vendita di vini e specialità enogastronomiche italiane.</p>
+          <p>Partner con una presenza diretta nel territorio veneto e una particolare attenzione alle produzioni di qualità e alle realtà vitivinicole locali, VaiGustando ci permette di offrire anche online un servizio coerente con i valori che da sempre guidano il nostro lavoro.</p>
+          <p>Attraverso questa collaborazione possiamo rendere disponibile online un’ampia selezione della collezione Gini, offrendo anche la possibilità di gestire richieste specifiche, annate particolari, selezioni e riserve, compatibilmente con le disponibilità della cantina.</p>
+          <p>I vini provengono direttamente dalle nostre cantine, dove sono conservati nelle condizioni ottimali fino al momento della preparazione dell’ordine, garantendo così provenienza e corretta conservazione delle bottiglie.</p>
+          <p>VaiGustando completa il servizio gestendo l’esperienza di acquisto online, il pagamento, la spedizione e l’assistenza al cliente, con la competenza e l’affidabilità di un partner specializzato.</p>
+          <span class="cta">Vai allo shop online →</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid-2 even mt">
+      <div class="spec">
+        <h4>Destinazione della CTA</h4>
+        <dl>
+          <dt>IT</dt><dd><a href="https://www.vaigustando.it/collections/gini-viticoltori-dal-1570" target="_blank" rel="noopener">vaigustando.it/collections/gini-viticoltori-dal-1570</a></dd>
+          <dt>EN</dt><dd><a href="https://www.vaigustando.com/collections/gini-viticoltori-dal-1570" target="_blank" rel="noopener">vaigustando.com/collections/gini-viticoltori-dal-1570</a></dd>
+          <dt>Etichetta</dt><dd>VAI ALLO SHOP ONLINE · EN: GO TO THE ONLINE SHOP</dd>
+          <dt>Apertura</dt><dd>Nuova scheda (<code>target="_blank" rel="noopener"</code>), così ginivini.com resta aperto</dd>
+        </dl>
+      </div>
+      <div class="note" style="margin-top:0">
+        <b>Perché il dominio inglese è diverso.</b> Lo storefront inglese di VaiGustando è su <b>vaigustando.com</b>, non su <code>vaigustando.it/en</code>, che reindirizza. Le pagine di <code>ginivini.com/en/…</code> devono quindi puntare a <b>.com</b>: gli indirizzi dei prodotti sono identici, cambia solo il dominio. Li abbiamo verificati uno per uno.
+      </div>
+    </div>
+
+    <figure class="mt" style="margin-left:0;margin-right:0">
+      <p class="small-cap">Dove arriva l’utente · Collezione Gini su VaiGustando</p>
+      <div class="grid-2 even">
+        <div class="frame zoom"><img src="img/vg-collection.jpg" alt="Collezione Gini su VaiGustando: introduzione e quattro aree"></div>
+        <div class="frame zoom"><img src="img/vg-collection-2.jpg" alt="Collezione Gini su VaiGustando: elenco vini"></div>
+      </div>
+      <figcaption>La collezione si apre con l’introduzione alla cantina e quattro aree: <b>Soave Classico e Recioto</b>, <b>Perle d’Alta quota</b>, <b>Metodo Classico</b>, <b>Tenuta Scajari</b>. Sotto, gli 11 vini oggi disponibili, con filtri, prezzi e disponibilità in tempo reale.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- 3. CREAZIONI -->
+<section class="block paper" id="creazioni">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="num">03</div>
+      <div>
+        <h2>ACQUISTA ONLINE nelle Creazioni</h2>
+        <p>L’impianto editoriale delle schede vino non cambia. La CTA entra solo nel blocco conclusivo <b>ASSAPORALO</b>, quando il racconto ha già accompagnato l’utente fra identità, territorio e prodotto. È il momento di massima intenzione: il link porta dritto alla scheda del vino su VaiGustando, senza ripassare da <code>/shop</code>.</p>
+      </div>
+    </div>
+
+    <figure class="ba" data-ba>
+      <div class="ba-tabs" role="group" aria-label="Confronto ASSAPORALO">
+        <button type="button" aria-pressed="false" data-v="before">Oggi</button>
+        <button type="button" aria-pressed="true" data-v="after">Proposta</button>
+      </div>
+      <div class="frame">
+        <img class="before" src="img/gini-assaporalo-before.jpg" alt="Blocco ASSAPORALO della scheda Soave Classico oggi">
+        <img class="after" src="img/gini-assaporalo-after.jpg" alt="Blocco ASSAPORALO con la CTA ACQUISTA ONLINE">
+        <div class="hot" style="left:43%;top:87.2%;width:14%;height:11%"><i>1</i></div>
+      </div>
+      <figcaption><b>Creazioni → Soave Classico → ASSAPORALO.</b> Sotto il testo di degustazione, un pulsante a filo sottile nello stile tipografico del sito (maiuscoletto, stesso corpo dei testi brevi) e una riga di servizio «In partnership con VaiGustando». Va trattato come un elemento nativo del sito, non come un banner pubblicitario.</figcaption>
+    </figure>
+
+    <div class="grid-2 mt">
+      <div>
+        <p class="small-cap">Riferimento · scheda Soave Classico D.O.C. su VaiGustando</p>
+        <div class="frame zoom"><img src="img/vg-product.jpg" alt="Scheda prodotto Soave Classico D.O.C. su VaiGustando"></div>
+        <figcaption>La destinazione del deep link: disponibilità in tempo reale, prezzo, formato, immagini e aggiunta al carrello in un clic.</figcaption>
+      </div>
+      <div>
+        <p class="small-cap">Stessa pagina da telefono</p>
+        <div class="phone"><div class="frame zoom"><img src="img/vg-product-mobile.jpg" alt="Scheda prodotto VaiGustando su mobile"></div></div>
+      </div>
+    </div>
+
+    <div class="mt">
+      <h3>Mappa dei link: Creazioni → schede VaiGustando</h3>
+      <p style="color:var(--ink-soft);max-width:70ch">11 Creazioni su 13 sono acquistabili oggi. <b>Sorai</b> e <b>Olinto</b> non sono a catalogo: lì la CTA non va messa. Il pulsante «Copia» copia il link completo dei parametri di tracciamento (sezione 05).</p>
+      <div class="lang-switch" role="group" aria-label="Lingua">
+        <button type="button" aria-pressed="true" data-lang="it">IT · vaigustando.it</button>
+        <button type="button" aria-pressed="false" data-lang="en">EN · vaigustando.com</button>
+      </div>
+      <div class="table-wrap">
+        <table id="map">
+          <thead><tr><th>Creazione Gini</th><th>CTA</th><th>Destinazione su VaiGustando</th><th></th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <div class="note">
+        <b>Se un vino esce di catalogo</b> la sua scheda VaiGustando resta online come «non disponibile», quindi il link non si rompe. Quando entra un vino nuovo, o Sorai e Olinto arrivano online, vi mandiamo il link da aggiungere.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4. CONTATTI -->
+<section class="block" id="contatti">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="num">04</div>
+      <div>
+        <h2>Un riferimento per lo shop nei Contatti</h2>
+        <p>Chi ha già comprato, o sta per farlo, cerca spesso «Contatti» per chiedere di una spedizione o di un ordine. Un blocco dedicato, sotto «Come contattarci», manda queste richieste all’assistenza VaiGustando e alleggerisce la casella della cantina.</p>
+      </div>
+    </div>
+
+    <figure class="ba" data-ba>
+      <div class="ba-tabs" role="group" aria-label="Confronto contatti">
+        <button type="button" aria-pressed="false" data-v="before">Oggi</button>
+        <button type="button" aria-pressed="true" data-v="after">Proposta</button>
+      </div>
+      <div class="frame">
+        <img class="before" src="img/gini-contatti-before.jpg" alt="Pagina Contatti di ginivini.com oggi">
+        <img class="after" src="img/gini-contatti-after.jpg" alt="Pagina Contatti con il blocco Acquisti online">
+        <div class="hot" style="left:24%;top:34%;width:52%;height:43%"><i>1</i></div>
+      </div>
+      <figcaption><b>Nuovo blocco «Acquisti online · in partnership con VaiGustando»</b>, con lo stesso componente di «Come contattarci» (titoletto, testo breve, voci grandi cliccabili).</figcaption>
+    </figure>
+
+    <div class="grid-2 even mt">
+      <div>
+        <div class="copy-actions"><button class="btn" type="button" data-copy="#contact-copy">Copia il testo</button></div>
+        <div class="copy" id="contact-copy">
+          <div class="eyebrow">Testo del blocco · IT</div>
+          <h3 style="font-size:22px">Acquisti online</h3>
+          <div class="sub">In partnership con VaiGustando</div>
+          <p>Per ordini, spedizioni e assistenza sugli acquisti online dei nostri vini, è a vostra disposizione il servizio clienti di VaiGustando, nostro partner per la vendita online.</p>
+          <p style="margin:0">SHOP ONLINE →<br>SUPPORTO@VAIGUSTANDO.IT<br>WHATSAPP: +39 349 371 3190</p>
+        </div>
+      </div>
+      <div class="spec">
+        <h4>Link delle voci</h4>
+        <dl>
+          <dt>Shop online</dt><dd><code>/shop</code> (EN <code>/en/shop</code>)</dd>
+          <dt>Email</dt><dd><code>mailto:supporto@vaigustando.it</code></dd>
+          <dt>WhatsApp</dt><dd><code>https://wa.me/393493713190</code><br><span style="color:var(--ink-soft);font-size:14px">Il canale «Supporto e vendita via WhatsApp 24/7» già attivo su vaigustando.it.</span></dd>
+          <dt>Testo EN</dt><dd>“For orders, shipping and support on online purchases of our wines, please contact VaiGustando customer care, our online sales partner.”</dd>
+        </dl>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RIFERIMENTO CESCON -->
+<section class="block paper" id="riferimento">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="num" style="font-size:40px;padding-top:8px">Rif.</div>
+      <div>
+        <h2>Un’integrazione già online: Italo Cescon</h2>
+        <p>La cantina Italo Cescon ha seguito lo stesso schema su <a href="https://cesconitalo.it/gamma-vini/madre/" target="_blank" rel="noopener">cesconitalo.it</a>. Lo citiamo per mostrare il risultato su un sito vero, che resta pienamente riconoscibile come sito di cantina. Per Gini aggiungiamo due passaggi: la pagina <code>/shop</code> e il blocco nei Contatti.</p>
+      </div>
+    </div>
+    <div class="grid-3">
+      <figure style="margin:0">
+        <div class="frame zoom"><img src="img/cescon-header.jpg" alt="cesconitalo.it: voce SHOP nel menu"></div>
+        <figcaption><b>SHOP nel menu principale</b>, fra le voci istituzionali. Da Cescon porta direttamente alla collezione; per Gini passa da <code>/shop</code>.</figcaption>
+      </figure>
+      <figure style="margin:0">
+        <div class="frame zoom"><img src="img/cescon-acquista.jpg" alt="cesconitalo.it: pulsante ACQUISTA nella scheda vino"></div>
+        <figcaption><b>ACQUISTA nella scheda vino</b>, accanto a «Scheda tecnica» e con lo stesso stile, in fondo al racconto. È l’equivalente del nostro blocco ASSAPORALO.</figcaption>
+      </figure>
+      <figure style="margin:0">
+        <div class="frame zoom"><img src="img/cescon-partnership.jpg" alt="cesconitalo.it: banner In partnership con VaiGustando"></div>
+        <figcaption><b>«In partnership con VaiGustando»</b>, banner a piena larghezza prima del footer. Per Gini questo contenuto vive nella pagina <code>/shop</code>.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- 5. LINEE GUIDA -->
+<section class="block" id="linee-guida">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="num">05</div>
+      <div>
+        <h2>Indicazioni per il team creativo e lo sviluppo</h2>
+        <p>Poche regole, che tengono il sito Gini al centro e misurano quanto contribuisce alle vendite.</p>
+      </div>
+    </div>
+
+    <div class="grid-2 even">
+      <ul class="clean">
+        <li><b>Linguaggio nativo.</b> Le CTA usano tipografia, colori e componenti di ginivini.com: devono sembrare parte del sito, non pubblicità esterna.</li>
+        <li><b>SHOP ONLINE stabile.</b> Sempre presente in navigazione, con la stessa visibilità su desktop e mobile.</li>
+        <li><b>/shop con una sola CTA.</b> Una pagina Gini con il testo di partnership e un unico pulsante verso la collezione.</li>
+        <li><b>ACQUISTA ONLINE solo dove serve.</b> Solo nelle Creazioni disponibili su VaiGustando (vedi mappa), solo nel blocco ASSAPORALO.</li>
+        <li><b>Deep link diretti.</b> Dalla Creazione si va alla scheda del vino, non alla home dello shop: un passaggio in meno fra interesse e acquisto.</li>
+        <li><b>Niente dati che cambiano.</b> Prezzi, stock e annate acquistabili non vanno riportati sul sito Gini: li gestisce VaiGustando e restano sempre aggiornati.</li>
+        <li><b>Versione inglese.</b> Su <code>/en</code> stesse voci tradotte, link verso <b>vaigustando.com</b>.</li>
+      </ul>
+      <div>
+        <h3>Tracciamento</h3>
+        <p style="color:var(--ink-soft)">Per misurare traffico, interesse per prodotto e contributo alle conversioni, ogni link verso VaiGustando porta i parametri UTM. Noi li leggiamo in Google Analytics sul nostro shop, a voi basta incollare i link così come sono.</p>
+        <div class="table-wrap" style="margin-top:14px">
+          <table style="min-width:0">
+            <thead><tr><th>Parametro</th><th>Valore</th></tr></thead>
+            <tbody>
+              <tr><td><code>utm_source</code></td><td><code>ginivini</code></td></tr>
+              <tr><td><code>utm_medium</code></td><td><code>referral</code></td></tr>
+              <tr><td><code>utm_campaign</code></td><td><code>gini_shop</code></td></tr>
+              <tr><td><code>utm_content</code></td><td><code>pagina_shop</code> · <code>assaporalo</code> · <code>contatti</code></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="margin-top:16px;font-size:14px;color:var(--ink-soft)">Esempio, CTA della pagina /shop:</p>
+        <p><code id="ex-utm"></code></p>
+        <p style="font-size:14px;color:var(--ink-soft)">Se sul sito Gini è attivo Google Analytics, conviene tracciare anche i clic su SHOP ONLINE e ACQUISTA ONLINE come eventi (ad esempio <code>click_shop_online</code> e <code>click_acquista_online</code>, con il nome del vino come parametro). Così vediamo anche quanti utenti arrivano a <code>/shop</code> e non proseguono.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 6. RUOLI -->
+<section class="block paper" id="ruoli">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="num">06</div>
+      <div>
+        <h2>Ruoli e perimetro operativo</h2>
+        <p>Chi fa cosa, una volta online.</p>
+      </div>
+    </div>
+    <div class="table-wrap">
+      <table class="roles">
+        <thead><tr><th>Ambito</th><th>Gini</th><th>VaiGustando</th></tr></thead>
+        <tbody>
+          <tr><td>Brand e storytelling</td><td>Sito istituzionale, contenuti, identità, racconto di territorio e prodotto</td><td>Coerenza del percorso verso l’acquisto</td></tr>
+          <tr><td>Disponibilità e assortimento</td><td>Allineamento su vini, annate, selezioni e riserve</td><td>Pubblicazione e gestione dell’assortimento online</td></tr>
+          <tr><td>Conservazione e provenienza</td><td>Vino conservato in cantina nelle condizioni ottimali</td><td>Coordinamento del servizio e comunicazione al cliente</td></tr>
+          <tr><td>E-commerce</td><td>—</td><td>Prezzi, ordini, pagamenti, checkout</td></tr>
+          <tr><td>Logistica e customer care</td><td>Supporto su disponibilità e richieste speciali</td><td>Spedizione, assistenza e gestione del cliente</td></tr>
+          <tr><td>Percorso digitale</td><td>Validazione con il team creativo</td><td>Proposta UX, CTA, funnel e ottimizzazione del percorso</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 7. CHECKLIST -->
+<section class="block" id="checklist">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="num">07</div>
+      <div>
+        <h2>Checklist di messa online</h2>
+        <p>Le spunte restano salvate in questo browser, utile per tenere il punto durante lo sviluppo.</p>
+      </div>
+    </div>
+    <ul class="check" id="checklist-list">
+      <li><label><input type="checkbox" data-k="c1"><span>Voce SHOP ONLINE nell’header desktop, su tutte le pagine IT ed EN</span></label></li>
+      <li><label><input type="checkbox" data-k="c2"><span>Voce SHOP ONLINE nella barra di navigazione (desktop prima di CONTATTI, mobile dopo HOME)</span></label></li>
+      <li><label><input type="checkbox" data-k="c3"><span>Card 007 · SHOP ONLINE nel menu a tutto schermo</span></label></li>
+      <li><label><input type="checkbox" data-k="c4"><span>Pagina /shop e /en/shop pubblicate, con testo di partnership e CTA unica</span></label></li>
+      <li><label><input type="checkbox" data-k="c5"><span>CTA ACQUISTA ONLINE nel blocco ASSAPORALO delle 11 Creazioni disponibili (non su Sorai e Olinto)</span></label></li>
+      <li><label><input type="checkbox" data-k="c6"><span>Link EN puntati a vaigustando.com</span></label></li>
+      <li><label><input type="checkbox" data-k="c7"><span>Blocco «Acquisti online» nella pagina Contatti, IT ed EN</span></label></li>
+      <li><label><input type="checkbox" data-k="c8"><span>Parametri UTM su tutti i link esterni, link esterni in nuova scheda</span></label></li>
+      <li><label><input type="checkbox" data-k="c9"><span>Prova completa dei tre percorsi da desktop e da telefono</span></label></li>
+      <li><label><input type="checkbox" data-k="c10"><span>Avviso a VaiGustando della messa online, per controllare l’arrivo del traffico</span></label></li>
+    </ul>
+  </div>
+</section>
+
+<!-- OUTCOME -->
+<section class="block paper" style="text-align:center">
+  <div class="wrap">
+    <p class="kicker">Risultato atteso</p>
+    <h2 style="max-width:30ch;margin:0 auto">Gini mantiene il racconto e la relazione con il proprio brand. VaiGustando rende quel racconto acquistabile.</h2>
+    <div class="outcome"><span>Racconto</span><span>Desiderio</span><span>Acquisto</span><span>Servizio</span></div>
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div>
+      <img src="img/logo-vaigustando.png" alt="VaiGustando" width="108" height="46">
+      <p style="margin:0;max-width:34ch">Selezione e vendita online di vini e specialità enogastronomiche italiane.</p>
+    </div>
+    <div>
+      <h4>Referente del progetto</h4>
+      <p style="margin:0">Ellis Bosisio · VaiGustando<br><a href="mailto:ellis@vaigustando.it">ellis@vaigustando.it</a></p>
+    </div>
+    <div>
+      <h4>Link utili</h4>
+      <p style="margin:0"><a href="https://www.vaigustando.it/collections/gini-viticoltori-dal-1570" target="_blank" rel="noopener">Collezione Gini su VaiGustando</a><br><a href="https://www.ginivini.com/" target="_blank" rel="noopener">ginivini.com</a><br><a href="https://cesconitalo.it/gamma-vini/madre/" target="_blank" rel="noopener">Riferimento: cesconitalo.it</a></p>
+    </div>
+  </div>
+</footer>
+
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Immagine ingrandita"><button type="button" aria-label="Chiudi">✕</button><img alt=""></div>
+
+<script>
+(function(){
+  var UTM = 'utm_source=ginivini&utm_medium=referral&utm_campaign=gini_shop';
+  var wines = [
+    ['Soave Classico','soave-classico','soave-classico-d-o-c','Soave Classico D.O.C.'],
+    ['La Froscà','la-froscà','la-frosca-soave-classico-d-o-c','La Froscà Soave Classico D.O.C.'],
+    ['Contrada Salvarenza','contrada-salvarenza','contrada-salvarenza-vecchie-vigne-soave-classico-d-o-c','Contrada Salvarenza Vecchie Vigne Soave Classico D.O.C.'],
+    ['Le Mattoline','le-mattoline','tenuta-scajari-le-mattoline-valpolicella-superiore-d-o-c','Tenuta Scajari Le Mattoline Valpolicella Superiore D.O.C.'],
+    ['Monte Serea','monte-serea','tenuta-scajari-monte-serea-amarone-della-valpolicella-docg','Tenuta Scajari Monte Serea Amarone della Valpolicella D.O.C.G.'],
+    ['Scajari','scajari','tenuta-scajari-amarone-della-valpolicella-riserva-d-o-c-g','Tenuta Scajari Amarone della Valpolicella Riserva D.O.C.G.'],
+    ['Sorai','sorai',null,'Bianco Verona IGT · non a catalogo'],
+    ['Maciete Fumé','maciete-fumé','maciete-fume-sauvignon-veneto-i-g-t','Maciete Fumé Sauvignon Veneto I.G.T.'],
+    ['Campo alle More','campo-alle-more','campo-alle-more-pinot-nero-veneto-i-g-t','Campo alle More Pinot Nero Veneto I.G.T.'],
+    ['Renobilis','renobilis','renobilis-recioto-di-soave-classico-d-o-c-g','Renobilis Recioto di Soave Classico D.O.C.G.'],
+    ['Col Foscarin','col-foscarin','col-foscarin-recioto-di-soave-classico-d-o-c-g','Col Foscarin Recioto di Soave Classico D.O.C.G.'],
+    ['Olinto','olinto',null,'Recioto di Soave DOCG Metodo Classico Ancestrale · non a catalogo'],
+    ['Camillo','camillo','camillo-metodo-classico-brut-millesimato','Camillo Metodo Classico Brut Millesimato']
+  ];
+  var tbody = document.querySelector('#map tbody');
+  function render(lang){
+    var host = lang === 'en' ? 'https://www.vaigustando.com' : 'https://www.vaigustando.it';
+    var pre = lang === 'en' ? '/en' : '';
+    var label = lang === 'en' ? 'Buy online' : 'Acquista online';
+    tbody.innerHTML = wines.map(function(w){
+      var gpath = 'ginivini.com' + pre + '/creazioni/' + w[1];
+      if (!w[2]) return '<tr class="off"><td><span class="wine">'+w[0]+'</span><span class="path">'+gpath+'</span></td><td><span class="tag no">Nessuna CTA</span></td><td>'+w[3]+'</td><td></td></tr>';
+      var url = host + '/products/' + w[2];
+      var full = url + '?' + UTM + '&utm_content=assaporalo';
+      return '<tr><td><span class="wine">'+w[0]+'</span><span class="path">'+gpath+'</span></td><td><span class="tag yes">'+label+'</span></td><td><a href="'+url+'" target="_blank" rel="noopener">'+url.replace('https://www.','')+'</a><span class="path">'+w[3]+'</span></td><td><button class="btn" type="button" data-text="'+full+'">Copia</button></td></tr>';
+    }).join('');
+  }
+  render('it');
+  document.querySelectorAll('[data-lang]').forEach(function(b){
+    b.addEventListener('click', function(){
+      document.querySelectorAll('[data-lang]').forEach(function(x){ x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
+      render(b.dataset.lang);
+    });
+  });
+  document.getElementById('ex-utm').textContent = 'https://www.vaigustando.it/collections/gini-viticoltori-dal-1570?' + UTM + '&utm_content=pagina_shop';
+
+  // copy
+  function copy(text, btn){
+    function ok(){ var t = btn.textContent; btn.textContent = 'Copiato'; btn.classList.add('done'); setTimeout(function(){ btn.textContent = t; btn.classList.remove('done'); }, 1600); }
+    function fallback(){ var ta = document.createElement('textarea'); ta.value = text; ta.style.position='fixed'; ta.style.opacity='0'; document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); ok(); } catch(e){} document.body.removeChild(ta); }
+    if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(text).then(ok, fallback); else fallback();
+  }
+  document.addEventListener('click', function(e){
+    var b = e.target.closest('button[data-text], button[data-copy]');
+    if (!b) return;
+    var text = b.dataset.text || document.querySelector(b.dataset.copy).innerText.replace(/^Testo [^\n]*\n/, '').trim();
+    copy(text, b);
+  });
+
+  // before/after
+  document.querySelectorAll('[data-ba]').forEach(function(fig){
+    fig.classList.add('show-after');
+    fig.querySelectorAll('.ba-tabs button').forEach(function(b){
+      b.addEventListener('click', function(){
+        fig.classList.toggle('show-after', b.dataset.v === 'after');
+        fig.querySelectorAll('.ba-tabs button').forEach(function(x){ x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
+      });
+    });
+  });
+
+  // lightbox
+  var lb = document.getElementById('lb'), lbImg = lb.querySelector('img');
+  document.querySelectorAll('.frame').forEach(function(f){
+    f.addEventListener('click', function(){
+      var img = [].slice.call(f.querySelectorAll('img')).filter(function(i){ return i.offsetParent !== null; })[0];
+      if (!img) return;
+      lbImg.src = img.src; lbImg.alt = img.alt; lb.classList.add('open');
+    });
+  });
+  function close(){ lb.classList.remove('open'); lbImg.src = ''; }
+  lb.addEventListener('click', close);
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') close(); });
+
+  // checklist (preferenza locale del singolo browser)
+  var KEY = 'gini-vg-checklist';
+  var state = {};
+  try { state = JSON.parse(localStorage.getItem(KEY) || '{}'); } catch(e) {}
+  document.querySelectorAll('#checklist-list input').forEach(function(i){
+    i.checked = !!state[i.dataset.k];
+    i.addEventListener('change', function(){ state[i.dataset.k] = i.checked; try { localStorage.setItem(KEY, JSON.stringify(state)); } catch(e) {} });
+  });
+})();
+</script>
+</body>
+</html>
